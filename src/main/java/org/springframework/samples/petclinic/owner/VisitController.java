@@ -40,12 +40,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 class VisitController {
 
-	private final VisitRepository visits;
+	private final VisitRepository visitRepo;
 
 	private final PetRepository pets;
 
-	public VisitController(VisitRepository visits, PetRepository pets) {
-		this.visits = visits;
+	public VisitController(VisitRepository visitRepo, PetRepository pets) {
+		this.visitRepo = visitRepo;
 		this.pets = pets;
 	}
 
@@ -64,7 +64,7 @@ class VisitController {
 	@ModelAttribute("visit")
 	public Visit loadPetWithVisit(@PathVariable("petId") int petId, Map<String, Object> model) {
 		Pet pet = this.pets.findById(petId);
-		pet.setVisitsInternal(this.visits.findByPetId(petId));
+		pet.setVisitsInternal(this.visitRepo.findByPetId(petId));
 		model.put("pet", pet);
 		Visit visit = new Visit();
 		pet.addVisit(visit);
@@ -84,7 +84,7 @@ class VisitController {
 			return "pets/createOrUpdateVisitForm";
 		}
 		else {
-			this.visits.save(visit);
+			this.visitRepo.save(visit);
 			return "redirect:/owners/{ownerId}";
 		}
 	}
