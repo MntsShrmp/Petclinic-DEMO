@@ -43,11 +43,14 @@ class OwnerController {
 
 	private final OwnerRepository owners;
 
+	private final OwnerFactory ownerFactory;
+
 	private VisitRepository visits;
 
 	public OwnerController(OwnerRepository clinicService, VisitRepository visits) {
 		this.owners = clinicService;
 		this.visits = visits;
+		this.ownerFactory = new OwnerFactory();
 	}
 
 	@InitBinder
@@ -57,7 +60,7 @@ class OwnerController {
 
 	@GetMapping("/owners/new")
 	public String initCreationForm(Map<String, Object> model) {
-		Owner owner = new Owner();
+		Owner owner = ownerFactory.createPerson();
 		model.put("owner", owner);
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
