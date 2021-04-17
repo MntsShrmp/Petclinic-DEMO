@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface PetRepository extends Repository<Pet, Integer> {
+public interface PetRepository{
 
 	/**
 	 * Retrieve all {@link PetType}s from the data store.
