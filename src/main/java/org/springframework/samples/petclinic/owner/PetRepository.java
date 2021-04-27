@@ -32,7 +32,13 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface PetRepository{
+public interface PetRepository extends MonetizableRepository<Pet, Integer> {
+
+	boolean isMonetizable();
+
+    boolean isExpired();
+
+	void listAllObjects() throws DataAccessException;
 
 	/**
 	 * Retrieve all {@link PetType}s from the data store.
