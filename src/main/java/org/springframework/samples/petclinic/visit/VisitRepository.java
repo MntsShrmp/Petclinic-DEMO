@@ -43,4 +43,6 @@ public interface VisitRepository{
 
 	List<Visit> findByPetId(Integer petId);
 
+	List<Visit> findByPetType(Integer type);
+
 }
