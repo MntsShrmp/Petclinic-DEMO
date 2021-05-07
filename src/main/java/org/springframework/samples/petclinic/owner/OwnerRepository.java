@@ -33,7 +33,13 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface OwnerRepository{
+public interface OwnerRepository extends Repository<Owner, Integer> {
+
+	boolean isMonetizable();
+
+    boolean isExpired();
+
+	void listAllObjects() throws DataAccessException;
 
 	/**
 	 * Retrieve {@link Owner}s from the data store by last name, returning all owners
