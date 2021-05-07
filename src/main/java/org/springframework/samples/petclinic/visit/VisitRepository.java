@@ -32,7 +32,7 @@ import org.springframework.samples.petclinic.model.BaseEntity;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface VisitRepository{
+public interface VisitRepository extends Repository<Visit, Integer> {
 
 	/**
 	 * Save a <code>Visit</code> to the data store, either inserting or updating it.
